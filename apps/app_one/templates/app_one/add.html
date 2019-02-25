@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Plan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <a href="/travels">Home</a> | <a href="/logout">Logout</a>
+    <div class="container">
+        <h2>Add a Trip</h2>
+        <form action="/travels/add_trip" method="post">
+        {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if "dest" in message.tags %}
+                <h6 class="text-danger">{{message}}</h6>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Destination: <input type="text" name="dest"></p>
+        {% if messages %}
+            {% for message in messages %}
+                {% if "desc" in message.tags %}
+                <h6 class="text-danger">{{message}}</h6>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Description: <input type="text" name="desc"></p>
+        {% if messages %}
+            {% for message in messages %}
+                {% if "start" in message.tags %}
+                <h6 class="text-danger">{{message}}</h6>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Travel Date From: <input type="date" name="start"></p>
+        {% if messages %}
+            {% for message in messages %}
+                {% if "end" in message.tags %}
+                    <h6 class="text-danger">{{message}}</h6>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <p>Travel Date To: <input type="date" name="end"></p>
+        <input type="submit" class="btn-primary" value="Add">
+        </form>
+    </div>
+</body>
+</html>
